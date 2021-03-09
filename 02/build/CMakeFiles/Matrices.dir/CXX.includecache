@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cshome/s/smoir/342/02-VectorsMatrices/Matrix.h
+vector
+-
+iostream
+-
+
+/home/cshome/s/smoir/342/02-VectorsMatrices/Vector.h
+Matrix.h
+/home/cshome/s/smoir/342/02-VectorsMatrices/Matrix.h
+
+/home/cshome/s/smoir/342/02-VectorsMatrices/matrixMain.cpp
+Matrix.h
+/home/cshome/s/smoir/342/02-VectorsMatrices/Matrix.h
+Vector.h
+/home/cshome/s/smoir/342/02-VectorsMatrices/Vector.h
+iostream
+-
+

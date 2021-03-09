@@ -1,0 +1,3 @@
+/home/cshome/s/smoir/342/02-VectorsMatrices/build/CMakeFiles/rebuild_cache.dir
+/home/cshome/s/smoir/342/02-VectorsMatrices/build/CMakeFiles/edit_cache.dir
+/home/cshome/s/smoir/342/02-VectorsMatrices/build/CMakeFiles/Matrices.dir
