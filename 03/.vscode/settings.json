@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "Vagrantfile": "ruby",
+        "string": "cpp",
+        "cmath": "cpp"
+    }
+}
