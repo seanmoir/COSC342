@@ -1,0 +1,13 @@
+project(ImageTransforms)
+add_executable(ImageTransforms
+  ImageTransforms.cpp
+  Image.cpp
+  Image.h
+  Pixel.h
+  stb_image.h
+  stb_image_write.h
+  Matrix.h
+  Matrix.cpp
+  Vector.h
+  Vector.cpp
+)
