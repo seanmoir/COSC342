@@ -1,0 +1,8 @@
+# ninja log v5
+4	270	6376464303100639	CMakeFiles/ImageTransforms.dir/Vector.cpp.obj	c7dd5e334c827e14
+5	293	6376464303320695	CMakeFiles/ImageTransforms.dir/Matrix.cpp.obj	47f78030cd4fdff3
+0	393	6376464304320913	CMakeFiles/ImageTransforms.dir/Image.cpp.obj	8c286e2347c4a14b
+0	279	6376467358060989	CMakeFiles/ImageTransforms.dir/ImageTransforms.cpp.obj	f4b45e12be857555
+279	470	6376467359891394	ImageTransforms.exe	90ce853201ee93ac
+0	740	6377619334922243	CMakeFiles/ImageTransforms.dir/ImageTransforms.cpp.obj	f4b45e12be857555
+740	873	6377619336069723	ImageTransforms.exe	90ce853201ee93ac

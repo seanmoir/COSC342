@@ -1,0 +1,5 @@
+# ninja log v5
+4	392	6376462173540122	CMakeFiles/Matrices.dir/Vector.cpp.obj	92439e24f637d2d
+0	395	6376462173550123	CMakeFiles/Matrices.dir/matrixMain.cpp.obj	a692076489d88306
+2	402	6376462173570142	CMakeFiles/Matrices.dir/Matrix.cpp.obj	8ac2449b11bf673e
+402	582	6376462175350525	Matrices.exe	af058e287b1c9724
