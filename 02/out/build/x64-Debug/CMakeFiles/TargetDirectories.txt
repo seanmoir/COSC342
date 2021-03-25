@@ -1,3 +1,0 @@
-F:/projects/COSC342-work/02/out/build/x64-Debug/CMakeFiles/Matrices.dir
-F:/projects/COSC342-work/02/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-F:/projects/COSC342-work/02/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
