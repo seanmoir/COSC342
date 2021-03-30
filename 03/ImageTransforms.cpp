@@ -1,3 +1,5 @@
+//Windows specific
+#define _USE_MATH_DEFINES
 
 // Simple, portable image I/O libraries
 #include "Image.h"
