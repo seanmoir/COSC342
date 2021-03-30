@@ -33,8 +33,6 @@ bld/
 [Ll]ogs/
 [Oo]ut/
 
-# Visual Studio 2015/2017 cache/options directory
-.vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -362,14 +360,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
-
 # Local History for Visual Studio Code
 .history/
 
@@ -399,3 +389,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+
+
+#cmake vscode project build directory
+build/
