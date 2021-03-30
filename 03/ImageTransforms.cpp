@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 	Matrix S(3, 3);
 	S(0,0) = 0.5; S(0,1) = 0; S(0,2) = 0;
 	S(1,0) = 0; S(1,1) = 0.5; S(1,2) = 0;
-	S(2,0) = 0; S(2,1) = 0; S(2,2) = 0.5;	
+	S(2,0) = 0; S(2,1) = 0; S(2,2) = 0.25;	
 
 	try
 	{
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 			{
 				for (v(0) = 0; v(0) < inputImage.width(); ++v(0))
 				{
-					Vector u = T2 * Rinv * T1 * S * v;
+					Vector u = T2 * S * Rinv * T1 * v;
 					u /= u(2);
 					if (u(0) >= 0 && u(0) < outputImage.width() -0.5 && u(1) >= 0 && u(1) < outputImage.height() -0.5)
 					{
