@@ -2,11 +2,11 @@
 
 #include <iostream>
 
-Derived::Derived() {
+Derived::Derived() : Object() {
 	std::cout << "Derived " << id_ << " created with Default Constructor" << std::endl;
 }
 
-Derived::Derived(const Derived& d) {
+Derived::Derived(const Derived& d) : Object(d) {
 	std::cout << "Derived " << id_ << " created with Copy Constructor from Derived " << d.id_ << std::endl;
 }
 
@@ -19,6 +19,8 @@ void Derived::whatAmI() const {
 }
 
 Derived& Derived::operator=(const Derived& d) {
+	Object::operator=(d);
+
 	if (this != &d) {
 		std::cout << "Assigning Derived " << d.id_ << " to Derived " << id_ << std::endl;
 	} else {
