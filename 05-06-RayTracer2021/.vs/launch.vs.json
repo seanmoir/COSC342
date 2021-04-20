@@ -7,7 +7,7 @@
       "project": "CMakeLists.txt",
       "projectTarget": "rayTracer.exe",
       "name": "rayTracer.exe",
-      "args": ["../../../sampleScene.txt"]
+      "args": ["../../../cubeScene.txt"]
     }
   ]
 }

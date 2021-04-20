@@ -38,7 +38,7 @@ std::vector<RayIntersection> Sphere::intersect(const Ray& ray) const {
 	RayIntersection hit;
 	hit.material = material;
 
-	double b2_4ac = b*b - 4*a*c;
+	double b2_4ac = b * b - 4 * a * c;
 	double t;
 	switch (sign(b2_4ac)) {
 	case -1:
@@ -46,11 +46,11 @@ std::vector<RayIntersection> Sphere::intersect(const Ray& ray) const {
 		break;
 	case 0:
 		// One intersection
-		t = -b/(2*a);
+		t = -b / (2 * a);
 		if (t > 0) {
 			// Intersection is in front of the ray's start point
-			hit.point = transform.apply(Point(p + t*d));
-			hit.normal = transform.apply(Normal(p + t*d));
+			hit.point = transform.apply(Point(p + t * d));
+			hit.normal = transform.apply(Normal(p + t * d));
 			if (hit.normal.dot(ray.direction) > 0) {
 				hit.normal = -hit.normal;
 			}
@@ -60,11 +60,11 @@ std::vector<RayIntersection> Sphere::intersect(const Ray& ray) const {
 		break;
 	case 1:
 		// Two intersections
-		t = (-b + sqrt(b*b - 4*a*c))/(2*a);
+		t = (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
 		if (t > 0) {
 			// Intersection is in front of the ray's start point
 			hit.point = transform.apply(Point(p + t * d));
-			hit.normal = transform.apply(Normal(p + t*d));
+			hit.normal = transform.apply(Normal(p + t * d));
 			if (hit.normal.dot(ray.direction) > 0) {
 				hit.normal = -hit.normal;
 			}
@@ -72,11 +72,11 @@ std::vector<RayIntersection> Sphere::intersect(const Ray& ray) const {
 			result.push_back(hit);
 		}
 
-		t = (-b - sqrt(b*b - 4*a*c))/(2*a);
+		t = (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
 		if (t > 0) {
 			// Intersection is in front of the ray's start point
-			hit.point = transform.apply(Point(p + t*d));
-			hit.normal = transform.apply(Normal(p + t*d));
+			hit.point = transform.apply(Point(p + t * d));
+			hit.normal = transform.apply(Normal(p + t * d));
 			if (hit.normal.dot(ray.direction) > 0) {
 				hit.normal = -hit.normal;
 			}
