@@ -64,10 +64,45 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 			hitColour += light->getIlluminationAt(hitPoint.point) * hitPoint.material.ambientColour;
 		} else {
 			// Not an ambient light
-			
-			/**************************************************
-		    * Code for better lighting and shadows goes here. *
-	        **************************************************/
+
+			// the diffuse element of the ith light
+			Colour id = light->getIlluminationAt(hitPoint.point);
+			// the diffuse colour of the object
+			Colour kd = hitPoint.material.diffuseColour;
+			// the normal vector to the surface at the hit point
+			Vector n = hitPoint.normal;
+			// the vecotr from the hit point towards the ith light source
+			Vector l = -light->getLightDirection(hitPoint.point);
+			// the specular element of the ith light
+			Colour is = light->getIlluminationAt(hitPoint.point);
+			// the specular colour of the object
+			Colour ks = hitPoint.material.diffuseColour;
+			// the reflection of l
+			Vector r = 2 * (n.dot(l)) * (n - l);
+			// the vector from the hit point back along the view ray
+			Vector v = -ray.direction;
+			// the specular exponent of the object's material
+			double a = hitPoint.material.specularExponent;
+
+			// computes the length of the Vector
+			n = n / n.norm();
+			l = l / l.norm();
+			v = v / v.norm();
+			r = r / r.norm();
+
+			double diffuse = std::max<double>(0, n.dot(l));
+			double specular = std::max<double>(0, r.dot(v));
+
+			// shadow ray
+			Ray shadowRay;
+			// shadow direction
+			shadowRay.direction = l;
+			// shadow starting point
+			shadowRay.point = hitPoint.point;
+			RayIntersection shadow = intersect(shadowRay);
+			if (shadow.distance - light->getDistanceToLight(hitPoint.point) > 0) {
+				hitColour += id * (kd * diffuse) + is * (ks * pow(specular, a));
+			}
 		}
 	}
 
