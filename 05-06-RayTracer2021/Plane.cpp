@@ -30,7 +30,7 @@ std::vector<RayIntersection> Plane::intersect(const Ray& ray) const {
 	double dz = inverseRay.direction(2);
 	double t = -z0 / dz;
 
-	if (std::abs(dz) > epsilon) {
+	if (std::abs(dz) > epsilon && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 

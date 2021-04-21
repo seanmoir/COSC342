@@ -38,8 +38,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
-		if (hit.point(0) >= -1 && hit.point(0) <= 1 &&
-			hit.point(1) >= -1 && hit.point(1) <= 1) {
+		if (hit.point(0) >= -1 && hit.point(0) <= 1 && hit.point(1) >= -1 && hit.point(1) <= 1) {
 
 			hit.material = material;
 
@@ -59,8 +58,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
-		if (hit.point(0) >= -1 && hit.point(0) <= 1 &&
-			hit.point(1) >= -1 && hit.point(1) <= 1) {
+		if (hit.point(0) >= -1 && hit.point(0) <= 1 && hit.point(1) >= -1 && hit.point(1) <= 1) {
 
 			hit.material = material;
 
@@ -84,8 +82,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
-		if (hit.point(0) >= -1 && hit.point(0) <= 1 &&
-			hit.point(2) >= -1 && hit.point(2) <= 1) {
+		if (hit.point(0) >= -1 && hit.point(0) <= 1 && hit.point(2) >= -1 && hit.point(2) <= 1) {
 
 			hit.material = material;
 
@@ -105,8 +102,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
-		if (hit.point(0) >= -1 && hit.point(0) <= 1 &&
-			hit.point(2) >= -1 && hit.point(2) <= 1) {
+		if (hit.point(0) >= -1 && hit.point(0) <= 1 && hit.point(2) >= -1 && hit.point(2) <= 1) {
 
 			hit.material = material;
 
@@ -130,8 +126,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
-		if (hit.point(1) >= -1 && hit.point(1) <= 1 &&
-			hit.point(2) >= -1 && hit.point(2) <= 1) {
+		if (hit.point(1) >= -1 && hit.point(1) <= 1 && hit.point(2) >= -1 && hit.point(2) <= 1) {
 
 			hit.material = material;
 
@@ -151,8 +146,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
-		if (hit.point(1) >= -1 && hit.point(1) <= 1 &&
-			hit.point(2) >= -1 && hit.point(2) <= 1) {
+		if (hit.point(1) >= -1 && hit.point(1) <= 1 && hit.point(2) >= -1 && hit.point(2) <= 1) {
 
 			hit.material = material;
 

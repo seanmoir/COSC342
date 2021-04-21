@@ -7,7 +7,7 @@
       "project": "CMakeLists.txt",
       "projectTarget": "rayTracer.exe",
       "name": "rayTracer.exe",
-      "args": ["../../../lightTesting1.txt"]
+      "args": ["../../../lightTesting.txt"]
     }
   ]
 }

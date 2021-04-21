@@ -10,7 +10,8 @@ End
 
 Camera PinholeCamera 1
 	Translate 0 0 -2.5
-	Rotate Y 90
+	Rotate Y 50
+	Rotate Z 50
 End
 
 Light AmbientLight

@@ -3,10 +3,11 @@
 #include "Colour.h"
 #include "ImageDisplay.h"
 #include "utility.h"
+#include "math.h"
 
 // For demos
 
-Scene::Scene() : backgroundColour(0,0,0), ambientLight(0,0,0), maxRayDepth(3), renderWidth(800), renderHeight(600), filename("render.png"), camera_(), objects_(), lights_() {
+Scene::Scene() : backgroundColour(0, 0, 0), ambientLight(0, 0, 0), maxRayDepth(3), renderWidth(800), renderHeight(600), filename("render.png"), camera_(), objects_(), lights_() {
 
 }
 
@@ -22,8 +23,8 @@ void Scene::render() const {
 
 	for (unsigned int v = 0; v < renderHeight; ++v) {
 		for (unsigned int u = 0; u < renderWidth; ++u) {
-			double cu = -1 + (u + 0.5)*(2.0 / w);
-			double cv = -h/w + (v + 0.5)*(2.0 / w);
+			double cu = -1 + (u + 0.5) * (2.0 / w);
+			double cv = -h / w + (v + 0.5) * (2.0 / w);
 			Ray ray = camera_->castRay(cu, cv);
 			display.set(u, v, computeColour(ray, maxRayDepth));
 		}
@@ -38,9 +39,9 @@ RayIntersection Scene::intersect(const Ray& ray) const {
 	RayIntersection firstHit;
 	firstHit.distance = infinity;
 	std::vector<RayIntersection> hits;
-	
-	for (const auto& obj: objects_) {
-		for (const auto& hit: obj->intersect(ray)) {
+
+	for (const auto& obj : objects_) {
+		for (const auto& hit : obj->intersect(ray)) {
 			if (hit.distance > epsilon && hit.distance < firstHit.distance) {
 				firstHit = hit;
 			}
@@ -57,12 +58,14 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 
 	Colour hitColour(0, 0, 0);
 
-	for (const auto & light : lights_) {
+	// Code to do better lighting, shadows, and reflections goes here.
+	for (const auto& light : lights_) {
 		// Compute the influence of this light on the appearance of the hit object.
 		if (light->getDistanceToLight(hitPoint.point) < 0) {
 			// An ambient light, ignore shadows and add appropriate colour
 			hitColour += light->getIlluminationAt(hitPoint.point) * hitPoint.material.ambientColour;
-		} else {
+		}
+		else {
 			// Not an ambient light
 
 			// the diffuse element of the ith light
@@ -71,7 +74,7 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 			Colour kd = hitPoint.material.diffuseColour;
 			// the normal vector to the surface at the hit point
 			Vector n = hitPoint.normal;
-			// the vecotr from the hit point towards the ith light source
+			// the vector from the hit point towards the ith light source
 			Vector l = -light->getLightDirection(hitPoint.point);
 			// the specular element of the ith light
 			Colour is = light->getIlluminationAt(hitPoint.point);
@@ -108,19 +111,19 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 
 	// Compute mirror reflections - only if surface hit is a mirror and we've not reached our rayDepth
 	if (rayDepth > 0 && (hitPoint.material.mirrorColour.red > 0 ||
-		                 hitPoint.material.mirrorColour.green > 0 ||
-		                 hitPoint.material.mirrorColour.blue > 0)) {
+		hitPoint.material.mirrorColour.green > 0 ||
+		hitPoint.material.mirrorColour.blue > 0)) {
 
 		// Compute the reflected ray
 		Ray reflectedRay;
 
 		// Surface normal as a unit vector
 		Normal n = hitPoint.normal;
-		n = n / n.norm(); 
+		n = n / n.norm();
 
 		// View direction as a unit vector
 		Direction v = -ray.direction;
-		v = v / v.norm(); 
+		v = v / v.norm();
 
 		// Ray starts at the hit point
 		reflectedRay.point = hitPoint.point;
