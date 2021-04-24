@@ -133,6 +133,10 @@ std::vector<RayIntersection> Cylinder::intersect(const Ray &ray) const
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+				hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 
 			result.push_back(hit);
@@ -155,6 +159,10 @@ std::vector<RayIntersection> Cylinder::intersect(const Ray &ray) const
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+				hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 
 			result.push_back(hit);

@@ -79,9 +79,9 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 			// the specular element of the ith light
 			Colour is = light->getIlluminationAt(hitPoint.point);
 			// the specular colour of the object
-			Colour ks = hitPoint.material.diffuseColour;
+			Colour ks = hitPoint.material.specularColour;
 			// the reflection of l
-			Vector r = 2 * (n.dot(l)) * (n - l);
+			Vector r = 2 * (n.dot(l)) * n - l;
 			// the vector from the hit point back along the view ray
 			Vector v = -ray.direction;
 			// the specular exponent of the object's material

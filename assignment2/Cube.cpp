@@ -43,7 +43,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 			hit.material = material;
 
 			Vector normalHit(3);
-			normalHit(0) = 0; normalHit(1) = 0; normalHit(2) = 1;
+			normalHit(0) = 1; normalHit(1) = 0; normalHit(2) = 0;
 			hit.normal = normalHit;
 
 			hit.point = transform.apply(hit.point);
@@ -67,7 +67,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 			hit.material = material;
 
 			Vector normalHit(3);
-			normalHit(0) = 0; normalHit(1) = 0; normalHit(2) = 1;
+			normalHit(0) = 1; normalHit(1) = 0; normalHit(2) = 0;
 			hit.normal = normalHit;
 
 			hit.point = transform.apply(hit.point);
@@ -95,7 +95,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 			hit.material = material;
 
 			Vector normalHit(3);
-			normalHit(0) = 0; normalHit(1) = 0; normalHit(2) = 1;
+			normalHit(0) = 0; normalHit(1) = 1; normalHit(2) = 0;
 			hit.normal = normalHit;
 
 			hit.point = transform.apply(hit.point);
@@ -119,7 +119,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 			hit.material = material;
 
 			Vector normalHit(3);
-			normalHit(0) = 0; normalHit(1) = 0; normalHit(2) = 1;
+			normalHit(0) = 0; normalHit(1) = 1; normalHit(2) = 0;
 			hit.normal = normalHit;
 
 			hit.point = transform.apply(hit.point);
