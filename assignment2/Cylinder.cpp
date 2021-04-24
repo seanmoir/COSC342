@@ -114,10 +114,52 @@ std::vector<RayIntersection> Cylinder::intersect(const Ray &ray) const
 	}
 
 
-	//END CAPS
-	a = (d(0) * d(0)) + (d(1) * d(1));
-	b = 2 * ((p(0) * d(0)) + (p(1) * d(1)));
-	c = (p(0) * p(0)) + (p(1) * p(1) - 1);
+	double y0 = inverseRay.point(2);
+	double dy = inverseRay.direction(2);
+
+	//FRONT ENDCAP
+	t = (-1-y0) / dy;
+	if (std::abs(dy) > epsilon && t > 0) {
+		RayIntersection hit;
+		hit.point = inverseRay.point + t * inverseRay.direction;
+
+		if ((hit.point(0) * hit.point(0)) + (hit.point(1) * hit.point(1)) < 1) {
+			
+			hit.material = material;
+			
+			Vector norm(3);
+			norm(0) = 0; norm(1) = 0; norm(2) = 1;
+			hit.normal = norm;
+
+			hit.point = transform.apply(hit.point);
+			hit.normal = transform.apply(hit.normal);
+			hit.distance = (hit.point - ray.point).norm();
+
+			result.push_back(hit);
+		}
+	}
+
+	//BACK END CAP
+	t = (1-y0) / dy;
+	if (std::abs(dy) > epsilon && t > 0) {
+		RayIntersection hit;
+		hit.point = inverseRay.point + t * inverseRay.direction;
+
+		if ((hit.point(0) * hit.point(0)) + (hit.point(1) * hit.point(1)) < 1) {
+			
+			hit.material = material;
+			
+			Vector norm(3);
+			norm(0) = 0; norm(1) = 0; norm(2) = 1;
+			hit.normal = norm;
+
+			hit.point = transform.apply(hit.point);
+			hit.normal = transform.apply(hit.normal);
+			hit.distance = (hit.point - ray.point).norm();
+
+			result.push_back(hit);
+		}
+	}
 
 	return result;
 }

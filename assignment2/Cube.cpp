@@ -34,7 +34,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 	double t;
 
 	t = (1 - zO) / dz;
-	if (std::abs(dz) > epsilon) {
+	if (std::abs(dz) > epsilon && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
@@ -48,13 +48,17 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+					hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 			result.push_back(hit);
 		}
 	}
 
 	t = (-1 - zO) / dz;
-	if (std::abs(dz) > epsilon) {
+	if (std::abs(dz) > epsilon && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
@@ -68,6 +72,10 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+					hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 			result.push_back(hit);
 		}
@@ -78,7 +86,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 	double dy = inverseRay.direction(1);
 
 	t = (-1 - yO) / dy;
-	if (std::abs(dy) > epsilon) {
+	if (std::abs(dy) > epsilon  && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
@@ -92,13 +100,17 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+					hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 			result.push_back(hit);
 		}
 	}
 
 	t = (1 - yO) / dy;
-	if (std::abs(dy) > epsilon) {
+	if (std::abs(dy) > epsilon && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
@@ -112,6 +124,10 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+					hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 			result.push_back(hit);
 		}
@@ -122,7 +138,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 	double dx = inverseRay.direction(0);
 
 	t = (1 - xO) / dx;
-	if (std::abs(dx) > epsilon) {
+	if (std::abs(dx) > epsilon && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
@@ -136,13 +152,17 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+					hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 			result.push_back(hit);
 		}
 	}
 
 	t = (-1 - xO) / dx;
-	if (std::abs(dx) > epsilon) {
+	if (std::abs(dx) > epsilon  & t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
@@ -156,6 +176,10 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 
 			hit.point = transform.apply(hit.point);
 			hit.normal = transform.apply(hit.normal);
+			if (hit.normal.dot(ray.direction) > 0)
+			{
+					hit.normal = -hit.normal;
+			}
 			hit.distance = (hit.point - ray.point).norm();
 			result.push_back(hit);
 		}
