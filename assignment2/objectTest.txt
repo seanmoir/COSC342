@@ -1,7 +1,7 @@
 # Test of the different Object Types
 Scene
     backgroundColour 0 0 0
-    renderSize 600 600
+    renderSize 1080 1080
 	rayDepth 2
 End
 
