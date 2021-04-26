@@ -2,11 +2,14 @@
 **/.vs/
 **/[Oo]ut/
 
-# Mac OS filesystem cruft
-**/.DS_Store
+#Keep launch.vs.json IDE config for VS
+!**/.vs/launch.vs.json
 
 #CMAKE VS Code bin directory
 **/build/
 
-#Keep launch.vs.json IDE config for VS
-!**/.vs/launch.vs.json
+# Mac OS filesystem cruft
+**/.DS_Store
+
+#Temp files
+**/~
