@@ -8,7 +8,7 @@
       "projectTarget": "rayTracer.exe",
       "name": "rayTracer.exe",
       "args": [
-        "../../../objectTest.txt"
+        "../../../lighting.txt"
       ]
     }
   ]

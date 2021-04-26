@@ -87,7 +87,7 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 			// the specular exponent of the object's material
 			double a = hitPoint.material.specularExponent;
 
-			// computes the length of the Vector
+			// unit vectors
 			n = n / n.norm();
 			l = l / l.norm();
 			v = v / v.norm();
