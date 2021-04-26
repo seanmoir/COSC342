@@ -86,7 +86,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 	double dy = inverseRay.direction(1);
 
 	t = (-1 - yO) / dy;
-	if (std::abs(dy) > epsilon  && t > 0) {
+	if (std::abs(dy) > epsilon && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 
@@ -162,7 +162,7 @@ std::vector<RayIntersection> Cube::intersect(const Ray& ray) const {
 	}
 
 	t = (-1 - xO) / dx;
-	if (std::abs(dx) > epsilon  & t > 0) {
+	if (std::abs(dx) > epsilon && t > 0) {
 		RayIntersection hit;
 		hit.point = inverseRay.point + t * inverseRay.direction;
 

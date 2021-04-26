@@ -68,23 +68,23 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 		else {
 			// Not an ambient light
 
-			// the diffuse element of the ith light
+			// diffuse element of the ith light
 			Colour id = light->getIlluminationAt(hitPoint.point);
-			// the diffuse colour of the object
+			// diffuse colour of the object
 			Colour kd = hitPoint.material.diffuseColour;
-			// the normal vector to the surface at the hit point
+			// normal vector to the surface at the hit point
 			Vector n = hitPoint.normal;
-			// the vector from the hit point towards the ith light source
+			// vector from the hit point towards the ith light source
 			Vector l = -light->getLightDirection(hitPoint.point);
-			// the specular element of the ith light
+			// specular element of the ith light
 			Colour is = light->getIlluminationAt(hitPoint.point);
-			// the specular colour of the object
+			// specular colour of the object
 			Colour ks = hitPoint.material.specularColour;
-			// the reflection of l
+			// reflection of l
 			Vector r = 2 * (n.dot(l)) * n - l;
-			// the vector from the hit point back along the view ray
+			// vector from the hit point back along the view ray
 			Vector v = -ray.direction;
-			// the specular exponent of the object's material
+			// specular exponent of the object's material
 			double a = hitPoint.material.specularExponent;
 
 			// unit vectors
@@ -96,9 +96,7 @@ Colour Scene::computeColour(const Ray& ray, unsigned int rayDepth) const {
 			double diffuse = std::max<double>(0, n.dot(l));
 			double specular = std::max<double>(0, r.dot(v));
 
-			// shadow ray
 			Ray shadowRay;
-			// shadow direction
 			shadowRay.direction = l;
 			// shadow starting point
 			shadowRay.point = hitPoint.point;
