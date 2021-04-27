@@ -57,7 +57,7 @@ add_definitions(
 # OpenGL Part 1
 add_executable(Part01
 	Part01/simpleWindow.cpp
-)
+ "common/ColorShader.cpp" "common/ColorShader.hpp")
 target_link_libraries(Part01
 	${ALL_LIBS}
 )
@@ -82,7 +82,7 @@ add_executable(Part02
 	Part02/basicShader.frag
 	Part02/basicShader.vert
 
-)
+ "common/ColorShader.cpp" "common/ColorShader.hpp")
 target_link_libraries(Part02
 	${ALL_LIBS}
 )

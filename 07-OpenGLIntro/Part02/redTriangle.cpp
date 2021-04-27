@@ -47,6 +47,8 @@ using namespace glm;
 #include <common/Object.hpp>
 #include <common/Triangle.hpp>
 
+#include <common/ColorShader.hpp>
+
 /* ---- Helper Functions  ------------------------------------------------------- */
 
 /*
@@ -121,14 +123,22 @@ int main( void )
 
     // create a triangle and set a shader
     Triangle* myTriangle = new Triangle();
+    Triangle* tri2 = new Triangle();
     //the basic vertex shader transforms the vertices using the Model-View Projection matrix
 	// and the basic fragment shader outputs a predefined color
-    Shader* shader = new Shader( "basicShader");
-
-    myTriangle->setShader(shader);
+    
+    /*Shader* shader = new Shader( "basicShader");
+    Shader* shader2 = new Shader("basicShader");*/
+    ColorShader* shader1 = new ColorShader(glm::vec4(0, 1, 0, 0, 0));
+    /*myTriangle->setShader(shader);
+    tri2->setShader(shader2);
+    myTriangle->setTranslate(vec3(1.2, 0, 0));
+    tri2->setTranslate(vec3(-1.2, 0, 0));*/
     
     Scene* myScene = new Scene();
-    myScene->addObject(myTriangle);
+
+    /*myScene->addObject(myTriangle);
+    myScene->addObject(tri2);*/
     
     Camera* myCamera = new Camera();
 	myCamera->setPosition(glm::vec3(0,0,-5));
@@ -153,7 +163,6 @@ int main( void )
 	
     delete myScene;
     delete myCamera;
-
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 
