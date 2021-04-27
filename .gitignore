@@ -1,11 +1,11 @@
-#IDE generated files and VS bin directory
-**/.vs/
-**/[Oo]ut/
-
-#Keep launch.vs.json IDE config for VS
+#IDE generated files but keep launch settings
+**/.vs/*
 !**/.vs/launch.vs.json
 
-#CMAKE VS Code bin directory
+#VS cmake build dir
+**/[Oo]ut/
+
+#VSCode cmake build dir
 **/build/
 
 # Mac OS filesystem cruft
@@ -13,3 +13,6 @@
 
 #Temp files
 **/~*
+
+#binaries
+**/*.exe

@@ -1,0 +1,20 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "default",
+      "currentDir": "${projectDir}/Part01",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Part01.exe",
+      "name": "Part01.exe"
+    },
+    {
+      "type": "default",
+      "currentDir": "${projectDir}/Part02",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Part02.exe",
+      "name": "Part02.exe"
+    }
+  ]
+}
