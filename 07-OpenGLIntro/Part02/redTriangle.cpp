@@ -46,6 +46,7 @@ using namespace glm;
 #include <common/Scene.hpp>
 #include <common/Object.hpp>
 #include <common/Triangle.hpp>
+#include <common/Quad.hpp>
 
 #include <common/ColorShader.hpp>
 
@@ -122,23 +123,27 @@ int main( void )
 	glBindVertexArray(VertexArrayID);
 
     // create a triangle and set a shader
-    Triangle* myTriangle = new Triangle();
+    //Triangle* myTriangle = new Triangle();
     Triangle* tri2 = new Triangle();
+
+    Quad* quad = new Quad();
     //the basic vertex shader transforms the vertices using the Model-View Projection matrix
 	// and the basic fragment shader outputs a predefined color
     
-    /*Shader* shader = new Shader( "basicShader");
+    /*Shader* shader1 = new Shader( "basicShader");
     Shader* shader2 = new Shader("basicShader");*/
-    ColorShader* shader1 = new ColorShader(glm::vec4(0, 1, 0, 0, 0));
-    /*myTriangle->setShader(shader);
+    ColorShader* shader1 = new ColorShader(glm::vec4(0.3,0.4,0.9,1.0));
+    ColorShader* shader2 = new ColorShader(glm::vec4(0.3,0,0.9,1.0));
+
+    quad->setShader(shader1);
     tri2->setShader(shader2);
-    myTriangle->setTranslate(vec3(1.2, 0, 0));
-    tri2->setTranslate(vec3(-1.2, 0, 0));*/
+    quad->setTranslate(vec3(1.2, 0, 0));
+    tri2->setTranslate(vec3(-1.2, 0, 0));
     
     Scene* myScene = new Scene();
 
-    /*myScene->addObject(myTriangle);
-    myScene->addObject(tri2);*/
+    myScene->addObject(quad);
+    myScene->addObject(tri2);
     
     Camera* myCamera = new Camera();
 	myCamera->setPosition(glm::vec3(0,0,-5));

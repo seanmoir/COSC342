@@ -12,16 +12,9 @@
 class ColorShader : public Shader 
 {
 public:
-	ColorShader() {}
-	ColorShader(glm::vec4 color)
-	{
-		Shader::Shader();
-		setColor(color);
-	}
-	~ColorShader()
-	{
-		glDeleteProgram(Shader::programID);
-	}
+	ColorShader();
+	ColorShader(glm::vec4 color);
+	~ColorShader();
 
 	void setColor(glm::vec4 color);
 
