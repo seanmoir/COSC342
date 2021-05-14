@@ -1,0 +1,34 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "currentDir": "${projectDir}/Part03",
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Part03.exe",
+      "name": "Part03.exe"
+    },
+    {
+      "type": "default",
+      "currentDir": "${projectDir}/Part04",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Part04.exe",
+      "name": "Part04.exe"
+    },
+    {
+      "type": "default",
+      "currentDir": "${projectDir}/Part05",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Part05.exe",
+      "name": "Part05.exe"
+    },
+    {
+      "type": "default",
+      "currentDir": "${projectDir}/Part06",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Part06.exe",
+      "name": "Part06.exe"
+    }
+  ]
+}

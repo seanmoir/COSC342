@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(lldb) Launch Part03",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Part03",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/Part03",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "(lldb) Launch Part04",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Part04",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/Part04",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "(lldb) Launch Part05",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Part05",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/Part05",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "(lldb) Launch Part06",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Part06",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/Part06",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
+    ]
+}
