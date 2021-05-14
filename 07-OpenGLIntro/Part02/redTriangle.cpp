@@ -143,7 +143,7 @@ int main( void )
     Scene* myScene = new Scene();
 
     myScene->addObject(quad);
-    myScene->addObject(tri2);
+    myScene->addObject(tri2); 
     
     Camera* myCamera = new Camera();
 	myCamera->setPosition(glm::vec3(0,0,-5));
