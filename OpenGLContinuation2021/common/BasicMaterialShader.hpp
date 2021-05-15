@@ -43,13 +43,17 @@ class BasicMaterialShader: public Shader{
     /*! Bind the shader. */
     void bind();
    
+
+    void setDiffuseLightColor(glm::vec3 color);
     
     private:
         Texture* m_texture;
         glm::vec3 m_lightPos;
         GLuint m_TextureID;
         GLuint m_lightPosID;
-    
+
+        //id for Diffuse Light color uniform
+        GLuint m_DiffuseLightColorID;
 };
 
 

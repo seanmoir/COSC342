@@ -22,6 +22,10 @@ void BasicMaterialShader::init(){
     m_lightPosID = glGetUniformLocation(programID, "lightPosWorldspace");
     glUniform3f(m_lightPosID, m_lightPos.x, m_lightPos.y, m_lightPos.z);
     m_TextureID  = glGetUniformLocation(programID, "myTextureSampler");
+
+    //set default diffuse lighting color
+    m_DiffuseLightColorID = glGetUniformLocation(programID, "diffuseLightColor");
+    setDiffuseLightColor(glm::vec3(1, 1, 1));
 }
 
 BasicMaterialShader::~BasicMaterialShader(){
@@ -50,6 +54,11 @@ void BasicMaterialShader::bind(){
     // Set our "myTextureSampler" sampler to user Texture Unit 0
     glUniform1i(m_TextureID, 0);
     
+}
+
+
+void BasicMaterialShader::setDiffuseLightColor(glm::vec3 color) {
+    glUniform3f(m_DiffuseLightColorID, color[0], color[1], color[2]);
 }
 
 

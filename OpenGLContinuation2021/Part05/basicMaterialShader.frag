@@ -15,11 +15,14 @@ uniform sampler2D myTextureSampler;
 uniform mat4 MV;
 uniform vec3 lightPosWorldspace;
 
+//passed diffuse light color from cpp main program
+uniform vec3 diffuseLightColor;
+
 const float ns = 6.0; //specular exponent
 
 // Light emission properties
 const vec3 ambientLightColor = vec3(0.4,0.4,0.4);
-const vec3 diffuseLightColor = vec3(1.0,1.0,1.0);
+//const vec3 diffuseLightColor = vec3(1.0,1.0,1.0);
 const vec3 specularLightColor = vec3(1.0,1.0,1.0);
 
 void main(){
