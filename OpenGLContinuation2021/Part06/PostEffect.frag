@@ -12,7 +12,7 @@ void main(){
     //color = texture( renderedTexture, UV + 0.005*vec2( sin(time+1024.0*UV.x),cos(time+768.0*UV.y)) ).xyz ;
     
 
-    bool sobel = true;
+    bool sobel = false;
     
     if(!sobel){ //blur box
         float blurSizeH = 1.0/1024; 
