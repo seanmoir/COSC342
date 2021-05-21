@@ -3,6 +3,7 @@
   "defaults": {},
   "configurations": [
     {
+      "currentDir": "${ProjectDir}/Skeleton",
       "type": "default",
       "project": "CMakeLists.txt",
       "projectTarget": "Skeleton.exe",
