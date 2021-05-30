@@ -71,6 +71,10 @@ void Group::setupShaders(){
             mtlshader->setAmbient(mat->getAmientColour());
             mtlshader->setSpecular(mat->getSpecularColour());
             mtlshader->setOpacity(mat->getOpacity());
+            
+            //specular exponent
+            mtlshader->setSpecularExponent(mat->getShininess());
+            
             mat->setShader(mtlshader);
             if(mat->getTextureName()!=""){
                 Texture* texture = new Texture(mat->getTextureName());

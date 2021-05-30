@@ -74,6 +74,12 @@ void MTLShader::setOpacity(float opacity){
     glProgramUniform1fv(programID, opacityID, 1, &m_opacity);
 }
 
+void MTLShader::setSpecularExponent(float ns) {
+    m_ns = ns;
+    GLint nsID = glGetUniformLocation(programID, "ns");
+    glProgramUniform1fv(programID, nsID, 1, &m_ns);
+}
+
 void MTLShader::setRenderMode(float renderMode){
     m_renderMode= renderMode;
  

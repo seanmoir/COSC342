@@ -34,6 +34,7 @@ class Material{
         glm::vec3 getAmientColour();
         glm::vec3 getSpecularColour();
         float getOpacity();
+        float getShininess();
 
         void setShader(Shader* shader);
         Shader*  getShader();

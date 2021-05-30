@@ -18,7 +18,7 @@ uniform vec4 specularColor;
 uniform vec3 lightPosWorldspace;
 uniform sampler2D myTextureSampler;
 uniform float opacity;
-const float ns = 6.0; //In the mean time, replace hardcode with cpp input later
+uniform float ns;
 
 void main(){
 	

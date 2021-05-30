@@ -46,7 +46,11 @@
     
     float Material::getOpacity(){
         return m_opacity;
-    };
+    }
+
+    float Material::getShininess() {
+        return m_shininess;
+    }
     
     
 	void Material::setShader(Shader* shader){
