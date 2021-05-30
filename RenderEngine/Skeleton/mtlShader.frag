@@ -12,12 +12,12 @@ in vec3 lightDirectionCameraspace;
 out vec4 color;
 
 // Values that stay constant for the whole mesh.
-uniform vec4 diffuseLightColor;
-uniform vec4 ambientLightColor;
-uniform vec4 specularLightColor;
+uniform vec4 diffuseColor;
+uniform vec4 ambientColor;
+uniform vec4 specularColor;
 uniform vec3 lightPosWorldspace;
 uniform sampler2D myTextureSampler;
-
+uniform float opacity;
 const float ns = 6.0; //In the mean time, replace hardcode with cpp input later
 
 void main(){
@@ -32,10 +32,6 @@ void main(){
     	
 	// Material properties
 	vec3 textureVal = texture( myTextureSampler, UV ).rgb;  //texture map will be used for diffuse and ambient texture map
-	//would come from a material settings file (e.g. mtl) fix later
-	vec3 ambientMatColor = vec3(0.6,0.6,0.6);
-	vec3 diffuseMatColor = vec3(1.0,1.0,1.0);
-	vec3 specularMatColor = vec3(0.3,0.3,0.3);
 	
 	// Distance to the light we could use this to diminish the amount of light the further away but we do not for simplification
 	float distance = length( lightPosWorldspace - posWorldspace );
@@ -64,9 +60,9 @@ void main(){
 	//  - Looking elsewhere -> < 1
 	float cosAlpha = clamp( dot( E,R ), 0,1 );
 	
-    vec3 diffuseComponent = diffuseLightColor.rgb * diffuseMatColor * textureVal * cosTheta;
-	vec3 ambientComponent = ambientLightColor.rgb * ambientMatColor * textureVal; //for simplification we reuse the diffuse texture map for the ambient texture map
-    vec3 specularComponent = specularLightColor.rgb * specularMatColor  * pow(cosAlpha,ns);
+    vec3 diffuseComponent = diffuseColor.rgb * textureVal * cosTheta;
+	vec3 ambientComponent = ambientColor.rgb * textureVal; //for simplification we reuse the diffuse texture map for the ambient texture map
+    vec3 specularComponent = specularColor.rgb * pow(cosAlpha,ns);
     
 	color.rgb =
 	// Ambient : simulates indirect lighting
@@ -76,5 +72,5 @@ void main(){
 	// Specular : reflective highlight, like a mirror
 	specularComponent;
     
-	color.a = 1;
+	color.a = opacity;
 }

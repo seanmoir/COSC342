@@ -31,7 +31,6 @@ using namespace glm;
 #include <common/Shader.hpp>
 #include <common/Texture.hpp>
 #include <common/Object.hpp>
-//#include <common/ColorShader.hpp>
 #include <common/Scene.hpp>
 #include <common/Triangle.hpp>
 #include <common/BasicMaterialShader.hpp>
@@ -74,8 +73,7 @@ bool initWindow(std::string windowName){
 
 
 
-int main( int argc, char *argv[] )
-{
+int main( int argc, char *argv[] ) {
     
     initWindow("renderEngine Skeleton");
     glfwMakeContextCurrent(window);
@@ -109,8 +107,14 @@ int main( int argc, char *argv[] )
     
     // Cull triangles which normal is not towards the camera
     glEnable(GL_CULL_FACE);
+
+
+    //Enables transparency of meshes
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     
+
     //create a Vertex Array Object and set it as the current one
     //we will not go into detail here. but this can be used to optimise the performance by storing all of the state needed to supply vertex data
     GLuint VertexArrayID;
@@ -167,7 +171,6 @@ int main( int argc, char *argv[] )
 	int nbFrames = 0;
     //Render loop
     while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS && glfwWindowShouldClose(window) == 0 ){// Clear the screen
-        
         // Measure speed
 		double currentTime = glfwGetTime();
 		nbFrames++;

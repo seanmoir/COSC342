@@ -32,7 +32,7 @@ void main(){
 	eyeDirectionCameraspace = vec3(0,0,0) - vertexPosCameraspace;
 	
 	// Vector that goes from the vertex to the light, in camera space. M is ommited because it's identity.
-	vec3 lightPositionCameraspace = ( V * M * vec4(lightPosWorldspace,1)).xyz;
+	vec3 lightPositionCameraspace = ( V * vec4(lightPosWorldspace,1)).xyz;
 	lightDirectionCameraspace = lightPositionCameraspace + eyeDirectionCameraspace;
 	
 	// Normal of the the vertex, in camera space
