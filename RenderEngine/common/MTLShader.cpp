@@ -80,11 +80,6 @@ void MTLShader::setSpecularExponent(float ns) {
     glProgramUniform1fv(programID, nsID, 1, &m_ns);
 }
 
-void MTLShader::setRenderMode(float renderMode){
-    m_renderMode= renderMode;
- 
-}
-
 
 void MTLShader::bind(){
     // Use our shader

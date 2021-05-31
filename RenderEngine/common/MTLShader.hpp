@@ -50,11 +50,7 @@ class MTLShader: public Shader{
 
         //set specular exponent
         void setSpecularExponent(float ns);
-
-
-        //! setRenderMode
-        /*! Set the render mode.*/
-        void setRenderMode(float renderMode);
+        
         //! bind
         /*! Bind the shader */
         void bind();
