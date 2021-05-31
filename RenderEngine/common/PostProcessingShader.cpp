@@ -44,6 +44,8 @@ void PostProcessingShader::bindShader(){
     
 }
 
+//sets the render mode for the application and passes it on to the GPU via a uniform variable,
+//this will set if and what special effect is active
 void PostProcessingShader::setRenderMode(float renderMode){
     m_render_mode = renderMode;
     render_modeID = glGetUniformLocation(programID, "render_mode");

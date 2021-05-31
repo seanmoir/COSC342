@@ -33,7 +33,6 @@ using namespace glm;
 #include <common/Object.hpp>
 #include <common/Scene.hpp>
 #include <common/Triangle.hpp>
-#include <common/BasicMaterialShader.hpp>
 #include <common/Mesh.hpp>
 #include <common/Controls.hpp>
 #include <common/Group.hpp>
@@ -204,6 +203,7 @@ int main( int argc, char *argv[] ) {
     // Set "renderedTexture" as our colour attachement #0
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
 
+    //Enable Depth buffer for Render-To-Texture
     GLuint depthrenderbuffer;
     glGenRenderbuffers( 1, & depthrenderbuffer);
     glBindRenderbuffer( GL_RENDERBUFFER, depthrenderbuffer);
@@ -261,6 +261,7 @@ int main( int argc, char *argv[] ) {
         // Clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
+        // enables and disables the respective speical effects depending on user input via keyboard
         if(glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS) {
             postEffectShader->setRenderMode(0);    
         }

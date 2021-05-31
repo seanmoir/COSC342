@@ -59,8 +59,6 @@ common/Shader.cpp
 common/Shader.hpp
 common/Texture.cpp
 common/Texture.hpp
-common/Texture.cpp
-common/Texture.hpp
 common/Camera.hpp
 common/Camera.cpp
 common/Scene.hpp
