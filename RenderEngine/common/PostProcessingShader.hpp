@@ -37,10 +37,14 @@ class PostProcessingShader: public Shader{
         //! bindShader
         /*! Bind the shader. */
         void bindShader();
+        
+        void setRenderMode(float renderMode);
 	
 	private:
         GLuint timeID;
         GLuint m_TextureID;
+        GLuint render_modeID;
+        int m_render_mode;
 
 	
 };

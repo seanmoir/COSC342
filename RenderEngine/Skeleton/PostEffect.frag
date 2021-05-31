@@ -2,19 +2,22 @@
 
 in vec2 UV;
 
-out vec3 color;
+out vec4 color;
 
 uniform sampler2D renderedTexture;
 uniform float time;
+uniform int render_mode;
 
 void main(){
 
     //color = texture( renderedTexture, UV + 0.005*vec2( sin(time+1024.0*UV.x),cos(time+768.0*UV.y)) ).xyz ;
+    if(render_mode == 0) {
+        color = texture(renderedTexture, UV).rgba;
+    }
     
-
-    bool sobel = false;
+    //bool sobel = false;
     
-    if(!sobel){ //blur box
+    if(render_mode == 1){ //blur box
         float blurSizeH = 1.0/1024; 
         float blurSizeV = 1.0/768;
         
@@ -27,10 +30,10 @@ void main(){
         }
         // TODO: add all values up and devide by 9*9
         result = result / (9*9);
-        color = result;
+        color = vec4(result, 1.0);
     }
 
-    if(sobel){ //sobel
+    if(render_mode == 2){ //sobel
         vec2 targetSize;
         targetSize.x = 1024;
         targetSize.y = 768;
@@ -49,7 +52,7 @@ void main(){
         vec4 sy = -topLeft - 2 * top  - topRight   + bottomLeft + 2 * bottom + bottomRight;
 
         vec4 result = sqrt(sx*sx+sy*sy);
-        color = result.xyz;
+        color = vec4(result.rgb, 1.0);
     }  
     
 }

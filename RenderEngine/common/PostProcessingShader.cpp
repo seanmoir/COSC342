@@ -1,5 +1,6 @@
 
 #include "PostProcessingShader.hpp"
+
 PostProcessingShader::PostProcessingShader(){
         
 }
@@ -41,4 +42,11 @@ void PostProcessingShader::bindShader(){
     // Bind our texture in Texture Unit 0
     
     
+}
+
+void PostProcessingShader::setRenderMode(float renderMode){
+    m_render_mode = renderMode;
+    render_modeID = glGetUniformLocation(programID, "render_mode");
+    glProgramUniform1iv(programID, render_modeID, 1, &m_render_mode);
+ 
 }

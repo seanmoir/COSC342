@@ -175,7 +175,7 @@ int main( int argc, char *argv[] ) {
     myCamera->setPosition(glm::vec3(0,100,200)); //set camera to show the models
     Controls* myControls = new Controls(myCamera);
     myControls->setSpeed(30);
-    
+
 // ---------------------------------------------
 // Render to Texture - specific code begins here
 // ---------------------------------------------
@@ -204,6 +204,11 @@ int main( int argc, char *argv[] ) {
     // Set "renderedTexture" as our colour attachement #0
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
 
+    GLuint depthrenderbuffer;
+    glGenRenderbuffers( 1, & depthrenderbuffer);
+    glBindRenderbuffer( GL_RENDERBUFFER, depthrenderbuffer);
+    glRenderbufferStorage( GL_RENDERBUFFER, GL_DEPTH_COMPONENT, windowWidth, windowHeight);
+    glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthrenderbuffer);
 
     // Always check that our framebuffer is ok
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -217,6 +222,7 @@ int main( int argc, char *argv[] ) {
     double lastTime = glfwGetTime();
     int nbFrames = 0;
 
+    postEffectShader->setRenderMode(0);
     //Render loop
     while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0) {// Clear the screen
         // Measure speed
@@ -254,6 +260,16 @@ int main( int argc, char *argv[] ) {
 
         // Clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        if(glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS) {
+            postEffectShader->setRenderMode(0);    
+        }
+        else if(glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+            postEffectShader->setRenderMode(1);    
+        }
+        else if(glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+            postEffectShader->setRenderMode(2);    
+        }
 
         // Use our shader
         postEffectShader->bind();
