@@ -10,14 +10,13 @@ uniform int render_mode;
 
 void main(){
 
-    //color = texture( renderedTexture, UV + 0.005*vec2( sin(time+1024.0*UV.x),cos(time+768.0*UV.y)) ).xyz ;
     if(render_mode == 0) {
         color = texture(renderedTexture, UV).rgba;
     }
     
     //bool sobel = false;
     
-    if(render_mode == 1){ //blur box
+    if(render_mode == 1) { //blur box
         float blurSizeH = 1.0/1024; 
         float blurSizeV = 1.0/768;
         
@@ -33,7 +32,7 @@ void main(){
         color = vec4(result, 1.0);
     }
 
-    if(render_mode == 2){ //sobel
+    if(render_mode == 2) { //sobel
         vec2 targetSize;
         targetSize.x = 1024;
         targetSize.y = 768;
@@ -53,6 +52,10 @@ void main(){
 
         vec4 result = sqrt(sx*sx+sy*sy);
         color = vec4(result.rgb, 1.0);
+    }
+
+    if(render_mode == 3) {
+        color = texture( renderedTexture, UV + 0.005*vec2( sin(time+1024.0*UV.x),cos(time+768.0*UV.y)) ).rgba ;
     }  
     
 }

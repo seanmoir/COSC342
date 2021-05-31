@@ -270,6 +270,9 @@ int main( int argc, char *argv[] ) {
         else if(glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
             postEffectShader->setRenderMode(2);    
         }
+        else if(glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) {
+            postEffectShader->setRenderMode(3);    
+        }
 
         // Use our shader
         postEffectShader->bind();
