@@ -39,6 +39,12 @@ using namespace glm;
 #include <common/Group.hpp>
 #include <common/Objloader.hpp>
 
+//used for buffer to render to for post effects
+#include <common/Quad.hpp>
+
+//used for post effects
+#include <common/PostProcessingShader.hpp>
+
 
 
 bool initWindow(std::string windowName){
@@ -113,7 +119,11 @@ int main( int argc, char *argv[] ) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    
+    // We would expect width and height to be 1024 and 768
+    int windowWidth = 1024;
+    int windowHeight = 768;
+    // But on MacOS X with a retina screen it'll be 1024*2 and 768*2, so we get the actual framebuffer size:
+    glfwGetFramebufferSize(window, &windowWidth, &windowHeight);
 
     //create a Vertex Array Object and set it as the current one
     //we will not go into detail here. but this can be used to optimise the performance by storing all of the state needed to supply vertex data
@@ -166,35 +176,101 @@ int main( int argc, char *argv[] ) {
     Controls* myControls = new Controls(myCamera);
     myControls->setSpeed(30);
     
+// ---------------------------------------------
+// Render to Texture - specific code begins here
+// ---------------------------------------------
+
+// The framebuffer, which regroups 0, 1, or more textures, and 0 or 1 depth buffer.
+    GLuint FramebufferName = 0;
+    glGenFramebuffers(1, &FramebufferName);
+    glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+
+    // The texture we're going to render to
+    GLuint renderedTexture;
+    glGenTextures(1, &renderedTexture);
+
+    // "Bind" the newly created texture : all future texture functions will modify this texture
+    glBindTexture(GL_TEXTURE_2D, renderedTexture);
+
+    // Give an empty image to OpenGL ( the last "0" means "empty" )
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth, windowHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+
+    // Poor filtering
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    // Set "renderedTexture" as our colour attachement #0
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
+
+
+    // Always check that our framebuffer is ok
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        return false;
+
+    // the quad that we use to render the framebuffer texture to the screen
+    Quad* outputQuad = new Quad();
+    PostProcessingShader* postEffectShader = new PostProcessingShader("Passthrough.vert", "PostEffect.frag");
+
     // For speed computation
-	double lastTime = glfwGetTime();
-	int nbFrames = 0;
+    double lastTime = glfwGetTime();
+    int nbFrames = 0;
+
     //Render loop
-    while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS && glfwWindowShouldClose(window) == 0 ){// Clear the screen
+    while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0) {// Clear the screen
         // Measure speed
-		double currentTime = glfwGetTime();
-		nbFrames++;
-		if ( currentTime - lastTime >= 1.0 ){ // If last prinf() was more than 1sec ago
-			// printf and reset
-			printf("%f ms/frame\n", 1000.0/double(nbFrames));
-			nbFrames = 0;
-			lastTime += 1.0;
-		}
-        
+        double currentTime = glfwGetTime();
+        nbFrames++;
+        if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1sec ago
+            // printf and reset
+            printf("%f ms/frame\n", 1000.0 / double(nbFrames));
+            nbFrames = 0;
+            lastTime += 1.0;
+        }
+
+        /************************** First step: Render Scene into framebuffer *****************/
+        // Render to our framebuffer
+        glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+
+        // Render to the screen
+        //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        //glViewport(0,0,windowWidth,windowHeight); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+
         // Clear the screen
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Also clear the depth buffer!!!
-        
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+        //Render content
         // update camera controls with mouse input
         myControls->update();
-        // takes care of all the rendering automatically
         myScene->render(myCamera);
-        
+
+        /************************** Second step: Render texture containing the scene to the screen *****************/
+        // Render to the screen
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        // Render on the whole framebuffer, complete from the lower left corner to the upper right
+        glViewport(0, 0, windowWidth, windowHeight);
+
+        // Clear the screen
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        // Use our shader
+        postEffectShader->bind();
+        // Bind our texture in Texture Unit 0
+        //the one from the famebuffer = render texture the one used in the shader texid
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, renderedTexture);
+        // Set our "renderedTexture" sampler to user Texture Unit 0
+        postEffectShader->bindTexture();
+        postEffectShader->setTime((float)(glfwGetTime() * 10.0f)); //set time to get animated effect in shader
+        outputQuad->directRender(); //call render directly to render quad only without transformations
+
         // Swap buffers
         glfwSwapBuffers(window);
         glfwPollEvents();
-        
+
     }
-    
     
     glDeleteVertexArrays(1, &VertexArrayID);
     //delete texture;

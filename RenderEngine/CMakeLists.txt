@@ -80,8 +80,15 @@ common/Objloader.cpp
 common/Controls.hpp
 common/Controls.cpp
 
+common/Quad.hpp
+common/Quad.cpp
+common/PostProcessingShader.cpp
+common/PostProcessingShader.hpp
+
 Skeleton/mtlShader.frag
 Skeleton/mtlShader.vert
+Skeleton/PostEffect.frag
+Skeleton/Passthrough.vert
 )
 target_link_libraries(Skeleton
 ${ALL_LIBS}
