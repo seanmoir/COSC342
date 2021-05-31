@@ -53,13 +53,21 @@ void main(){
 	vec3 E = normalize(eyeDirectionCameraspace);
 	// Direction in which the triangle reflects the light
 	vec3 R = reflect(-L,N);
+
+	//BLINN-PHONG RELFECTION MODEL
+	vec3 H = L + E;
 	
 	// Cosine of the angle between the Eye vector and the Reflect vector,
 	// The cosine is clamped to contrain it between 0 and 1 to avoid negative values
 	//  - Looking into the reflection -> 1
 	//  - Looking elsewhere -> < 1
-	float cosAlpha = clamp( dot( E,R ), 0,1 );
-	
+
+	//PHONG
+	//float cosAlpha = clamp( dot( E,R ), 0,1 );
+
+	//BLINN-PHONG
+	float cosAlpha = clamp( dot( H,normalCameraspace ), 0,1 );
+
     vec3 diffuseComponent = diffuseColor.rgb * textureVal * cosTheta;
 	vec3 ambientComponent = ambientColor.rgb * textureVal; //for simplification we reuse the diffuse texture map for the ambient texture map
     vec3 specularComponent = specularColor.rgb * pow(cosAlpha,ns);
