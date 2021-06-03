@@ -32,6 +32,9 @@ function main() {
     return;
   }
 
+  var someColLoc = gl.getUniformLocation(gl.program, "color");
+  gl.uniform3f(someColLoc, 1.0, 0.0, 1.0);
+
   // Write the positions of vertices to a vertex shader
   var n = initVertexBuffers(gl);
   if (n < 0) {
@@ -48,16 +51,14 @@ function main() {
 
   // Draw the rectangle
   gl.drawArrays(gl.TRIANGLES, 0, n);
-
-  var someColLoc = gl.getUniformLocation(gl.program, "color");
-  gl.uniform3f(someColLoc, 1.0, 0.0, 1.0);
 }
 
 function initVertexBuffers(gl) {
   var vertices = new Float32Array([
-    0, 0.5,   -0.5, -0.5,   0.5, -0.5
+    0, 0.5,   -0.5, -0.5,   0.5, -0.5,
+    1, 0.5,   0, 0.5,  0.5,  -0.5
   ]);
-  var n = 3; // The number of vertices
+  var n = 6; // The number of vertices
 
   // Create a buffer object
   var vertexBuffer = gl.createBuffer();
